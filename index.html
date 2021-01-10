@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>城ヶ崎海岸_橋</title>
+  <meta name="description" content="城ヶ崎海岸_橋">
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+  
+  <script>
+    function tugi(){
+      window.location.href = "https://18j5141.github.io/meiseisteamsound6/"
+    }
+
+    AFRAME.registerComponent('test', {
+      init: function () {
+        console.log(this);
+        const element = this.el;
+        element.addEventListener('sound-loaded', function () {
+          console.log('sound-loaded');
+          setTimeout(function () {
+            element.components.sound.playSound();
+          }, 1000);
+          
+        });
+        element.addEventListener('mouseenter', function () {
+          console.log('mouseenter');
+          element.components.sound.pauseSound();
+          setTimeout(tugi, 5000)
+          
+        });
+      }
+    });
+
+  </script>
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="hasi" src="hasi.jpg" preload="auto"></img> 
+      <audio id="nami" src="nami1.mp3" preload="auto"></audio>
+    </a-assets>
+    <a-camera>
+      <a-cursor fuse="true" fuse-timeout="1000"></a-cursor> 
+    </a-camera>
+    <a-box id="box" rotation="0 -20 0" width="9" height="7" depth="0" position="-5 -1 2"
+      material="opacity: 0;" sound="src: #nami; autoplay: true; loop:true;" test>
+    </a-box>
+    
+    <a-sky src="#hasi" rotation="0 0 0"></a-sky>
+  </a-scene>
+</body>
+
+</html>
